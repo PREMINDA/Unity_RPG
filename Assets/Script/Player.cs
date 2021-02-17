@@ -5,12 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D _rg;
-    float speed = 1f;
+    float speed = 2f;
     private Animator _playerAnimator;
     void Start()
     {
         _rg = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -25,5 +26,11 @@ public class Player : MonoBehaviour
 
 
         _rg.velocity = new Vector2(Hmove *speed, Vmove * speed);
+
+        if(Hmove == 1 || Hmove == -1 || Vmove == 1 || Vmove == -1)
+        {
+            _playerAnimator.SetFloat("lastMoveX",Hmove);
+            _playerAnimator.SetFloat("lastMoveY", Vmove);
+        }
     }
 }
