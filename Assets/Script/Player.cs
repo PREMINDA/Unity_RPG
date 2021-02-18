@@ -5,10 +5,23 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D _rg;
-    float speed = 2f;
+    float speed = 3f;
     private Animator _playerAnimator;
+    public static Player instance;
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
     void Start()
     {
+        
         _rg = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
         DontDestroyOnLoad(gameObject);
