@@ -7,8 +7,12 @@ public class AreaExit : MonoBehaviour
 {
     [SerializeField]
     private string _areaToLoad;
+    public string areaTransestionName;
+
+
     void Start()
     {
+       
         
     }
 
@@ -23,6 +27,7 @@ public class AreaExit : MonoBehaviour
         if(collision.tag == "Player")
         {
             SceneManager.LoadScene(_areaToLoad);
+            Player.instance.areaTransestionName = areaTransestionName;
         }
     }
 }

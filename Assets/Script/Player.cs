@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     float speed = 3f;
     private Animator _playerAnimator;
     public static Player instance;
+
+    public string areaTransestionName;
+
     private void Awake()
     {
         if(instance == null)
