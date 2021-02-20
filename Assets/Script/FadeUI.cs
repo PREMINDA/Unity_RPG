@@ -9,9 +9,11 @@ public class FadeUI : MonoBehaviour
     public bool shouldBlack;
     public bool shouldFade;
     private float fadeSpeed = 1;
+    public static FadeUI instance;
     void Start()
     {
-       
+        instance = this;
+        img.color = new Color(img.color.r, img.color.g, img.color.b, 0f);
     }
 
     // Update is called once per frame
@@ -20,6 +22,36 @@ public class FadeUI : MonoBehaviour
         if (shouldBlack)
         {
             img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.MoveTowards(img.color.a, 1f, fadeSpeed * Time.deltaTime));
+
+            if(img.color.a == 1f)
+            {
+                shouldBlack = false;
+            }
+        }
+        if (shouldFade)
+        {
+            img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.MoveTowards(img.color.a, 0f, fadeSpeed * Time.deltaTime));
+
+            if (img.color.a == 0f)
+            {
+                shouldFade = false;
+            }
         }
     }
+
+    public IEnumerator FadeScreen()
+    {
+        img.color = new Color(img.color.r, img.color.g, img.color.b, 1f);
+        yield return new WaitForSeconds(0.5f);
+
+        shouldBlack = false;
+        shouldFade = true;
+    }
+    public void FadeScreenblack()
+    {
+
+        shouldBlack = true;
+        shouldFade = false;
+    }
+
 }

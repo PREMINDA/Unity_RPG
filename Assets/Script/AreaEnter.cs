@@ -10,6 +10,8 @@ public class AreaEnter : MonoBehaviour
         if (entrenceLocation == Player.instance.areaTransestionName)
         {
             Player.instance.transform.position = transform.position;
+            StartCoroutine(FadeUI.instance.FadeScreen());
+            
         }
     }
     void Update()

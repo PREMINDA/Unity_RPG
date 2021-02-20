@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private Vector3 bottomLeft;
     private Vector3 topRight;
 
+    public bool canwalk = true;
+
     private void Awake()
     {
         if(instance == null)
@@ -39,28 +41,42 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        float Hmove = Input.GetAxisRaw("Horizontal");
-        float Vmove = Input.GetAxisRaw("Vertical");
+        Movement();
+    }
 
-        _playerAnimator.SetFloat("moveX", Hmove);
-        _playerAnimator.SetFloat("moveY", Vmove);
+    private void Movement()
+    {
 
-
-        _rg.velocity = new Vector2(Hmove *speed, Vmove * speed);
-       
-
-        if (Hmove == 1 || Hmove == -1 || Vmove == 1 || Vmove == -1)
+        if (canwalk == true)
         {
-            _playerAnimator.SetFloat("lastMoveX",Hmove);
-            _playerAnimator.SetFloat("lastMoveY", Vmove);
-        }
+            float Hmove = Input.GetAxisRaw("Horizontal");
+            float Vmove = Input.GetAxisRaw("Vertical");
 
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeft.x, topRight.x), Mathf.Clamp(transform.position.y, bottomLeft.y, topRight.y), transform.position.z);
+            _playerAnimator.SetFloat("moveX", Hmove);
+            _playerAnimator.SetFloat("moveY", Vmove);
+
+
+            _rg.velocity = new Vector2(Hmove * speed, Vmove * speed);
+
+
+            if (Hmove == 1 || Hmove == -1 || Vmove == 1 || Vmove == -1)
+            {
+                _playerAnimator.SetFloat("lastMoveX", Hmove);
+                _playerAnimator.SetFloat("lastMoveY", Vmove);
+            }
+
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeft.x, topRight.x), Mathf.Clamp(transform.position.y, bottomLeft.y, topRight.y), transform.position.z);
+        }
     }
 
     public void playerLimit(Vector3 botLeft,Vector3 tpRight)
     {
         bottomLeft = botLeft + new Vector3(1f,1f,0);
         topRight = tpRight + new Vector3(-1f, -1f, 0);
+    }
+
+    public void setcanwalk(bool can)
+    {
+        canwalk = can;
     }
 }

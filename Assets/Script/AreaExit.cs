@@ -9,10 +9,12 @@ public class AreaExit : MonoBehaviour
     private string _areaToLoad;
     public string areaTransestionName;
 
+    
+
 
     void Start()
     {
-       
+
         
     }
 
@@ -26,8 +28,17 @@ public class AreaExit : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            SceneManager.LoadScene(_areaToLoad);
-            Player.instance.areaTransestionName = areaTransestionName;
+            StartCoroutine(wait());
+            Player.instance.setcanwalk(false);
+            FadeUI.instance.FadeScreenblack();
+           
         }
+    }
+    private IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(_areaToLoad);
+        Player.instance.areaTransestionName = areaTransestionName;
+        Player.instance.setcanwalk(true);
     }
 }
