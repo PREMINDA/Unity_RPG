@@ -44,6 +44,15 @@ TagManager:
   - name: Background
     uniqueID: 781920507
     locked: 0
+  - name: Ground
+    uniqueID: 442385343
+    locked: 0
+  - name: Path
+    uniqueID: 1975572181
+    locked: 0
+  - name: Object
+    uniqueID: 75691605
+    locked: 0
   - name: Forground
     uniqueID: 3209893945
     locked: 0

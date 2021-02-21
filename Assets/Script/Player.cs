@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private Vector3 bottomLeft;
     private Vector3 topRight;
 
-    public bool canwalk = true;
+ 
 
     private void Awake()
     {
@@ -47,26 +47,25 @@ public class Player : MonoBehaviour
     private void Movement()
     {
 
-        if (canwalk == true)
+        
+        float Hmove = Input.GetAxisRaw("Horizontal");
+        float Vmove = Input.GetAxisRaw("Vertical");
+
+        _playerAnimator.SetFloat("moveX", Hmove);
+        _playerAnimator.SetFloat("moveY", Vmove);
+
+
+        _rg.velocity = new Vector2(Hmove * speed, Vmove * speed);
+
+
+        if (Hmove == 1 || Hmove == -1 || Vmove == 1 || Vmove == -1)
         {
-            float Hmove = Input.GetAxisRaw("Horizontal");
-            float Vmove = Input.GetAxisRaw("Vertical");
-
-            _playerAnimator.SetFloat("moveX", Hmove);
-            _playerAnimator.SetFloat("moveY", Vmove);
-
-
-            _rg.velocity = new Vector2(Hmove * speed, Vmove * speed);
-
-
-            if (Hmove == 1 || Hmove == -1 || Vmove == 1 || Vmove == -1)
-            {
-                _playerAnimator.SetFloat("lastMoveX", Hmove);
-                _playerAnimator.SetFloat("lastMoveY", Vmove);
-            }
-
-            transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeft.x, topRight.x), Mathf.Clamp(transform.position.y, bottomLeft.y, topRight.y), transform.position.z);
+            _playerAnimator.SetFloat("lastMoveX", Hmove);
+            _playerAnimator.SetFloat("lastMoveY", Vmove);
         }
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, bottomLeft.x, topRight.x), Mathf.Clamp(transform.position.y, bottomLeft.y, topRight.y), transform.position.z);
+        
     }
 
     public void playerLimit(Vector3 botLeft,Vector3 tpRight)
@@ -75,8 +74,8 @@ public class Player : MonoBehaviour
         topRight = tpRight + new Vector3(-1f, -1f, 0);
     }
 
-    public void setcanwalk(bool can)
+    public void setcanwalk(float can)
     {
-        canwalk = can;
+        speed = can;
     }
 }

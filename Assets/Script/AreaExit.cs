@@ -29,16 +29,16 @@ public class AreaExit : MonoBehaviour
         if(collision.tag == "Player")
         {
             StartCoroutine(wait());
-            Player.instance.setcanwalk(false);
+            Player.instance.setcanwalk(0);
             FadeUI.instance.FadeScreenblack();
            
         }
     }
     private IEnumerator wait()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(_areaToLoad);
         Player.instance.areaTransestionName = areaTransestionName;
-        Player.instance.setcanwalk(true);
+        Player.instance.setcanwalk(5f);
     }
 }
