@@ -6,33 +6,54 @@ using UnityEngine.UI;
 public class DialogManager : MonoBehaviour
 {
     public new Text name;
-    public Text dialog;
-    public GameObject diallogbox;
-    public GameObject namebox;
+    [SerializeField]
+    private Text dialog;
+    [SerializeField]
+    private GameObject diallogbox;
+    [SerializeField]
+    private GameObject namebox;
+    [SerializeField]
     private int dnumber = 0;
+   
 
     public string[] dialogs;
+   
+    
     void Start()
     {
+        
         dialogs = new string[] {"shdialog","asd","qwe","asd","dfg","ert","345","fgh","vbn","jgh","fgh","rrte","wer" };
-       
+        Debug.Log(diallogbox.activeInHierarchy);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        dialog.text = dialogs[dnumber];
-        StartCoroutine(waitfordialog());
-    }
-
-    public IEnumerator waitfordialog()
-    {
-        yield return new WaitForSeconds(2f);
-        if (dnumber <= dialogs.Length)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && diallogbox.activeInHierarchy)
         {
 
-        dnumber++;
-        }
+            if (dialogs.Length - 1 > dnumber)
+            {
+                dnumber++;
 
+                Debug.Log(dnumber);
+
+            }
+            else
+            {
+                diallogbox.SetActive(false);
+            }
+            Debug.Log("I am Runing");
+            dialog.text = dialogs[dnumber];
+        }
+       
+      
     }
+    public void DialogBoxActive(bool set)
+    {
+        diallogbox.SetActive(set);
+}
+
+   
 }
