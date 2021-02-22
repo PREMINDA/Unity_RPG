@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D _rg;
+    public Rigidbody2D _rg;
     float speed = 5f;
     private Animator _playerAnimator;
     public static Player instance;
@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
         _playerAnimator = GetComponent<Animator>();
         DontDestroyOnLoad(gameObject);
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraContraller>();
+        
         
     }
     // Update is called once per frame

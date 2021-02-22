@@ -43,8 +43,10 @@ public class DialogManager : MonoBehaviour
             else
             {
                 diallogbox.SetActive(false);
+                resetdialog();
+                Player.instance.setcanwalk(5f);
             }
-            Debug.Log("I am Runing");
+            
             dialog.text = dialogs[dnumber];
         }
        
@@ -53,7 +55,12 @@ public class DialogManager : MonoBehaviour
     public void DialogBoxActive(bool set)
     {
         diallogbox.SetActive(set);
-}
-
+    }
+    public void resetdialog()
+    {
+        dnumber = 0;
+        Debug.Log("ResetDialog");
+        Debug.Log(dnumber);
+    }
    
 }
