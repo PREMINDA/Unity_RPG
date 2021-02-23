@@ -8410,7 +8410,7 @@ GameObject:
   - component: {fileID: 1146892438}
   - component: {fileID: 1146892439}
   m_Layer: 0
-  m_Name: NPC_0
+  m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8518,6 +8518,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e79215f484915041b8987b4d4817a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogs:
+  - n-girl
+  - 1g
+  - n-player
+  - 1p
+  - n-girl
+  - 2g
+  - 3g
+  - n-player
+  - 2p
+  - 3p
 --- !u!58 &1146892439
 CircleCollider2D:
   m_ObjectHideFlags: 0

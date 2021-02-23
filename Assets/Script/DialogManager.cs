@@ -76,7 +76,7 @@ public class DialogManager : MonoBehaviour
     {
         if (dialogs.Length > dnumber && dialogs[dnumber].StartsWith("n-"))
         {
-            name.text = dialogs[dnumber];
+            name.text = dialogs[dnumber].Replace("n-","");
             dnumber++;
         }
     }
