@@ -22,7 +22,7 @@ public class DialogManager : MonoBehaviour
     void Start()
     {
         
-        dialogs = new string[] {"shdialog","asd","qwe","asd","dfg","ert","345","fgh","vbn","jgh","fgh","rrte","wer" };
+       
         Debug.Log(diallogbox.activeInHierarchy);
 
     }
@@ -35,6 +35,7 @@ public class DialogManager : MonoBehaviour
 
             if (dialogs.Length - 1 > dnumber)
             {
+                dialog.text = dialogs[dnumber];
                 dnumber++;
 
                 Debug.Log(dnumber);
@@ -47,7 +48,7 @@ public class DialogManager : MonoBehaviour
                 Player.instance.setcanwalk(5f);
             }
             
-            dialog.text = dialogs[dnumber];
+           
         }
        
       
@@ -61,6 +62,10 @@ public class DialogManager : MonoBehaviour
         dnumber = 0;
         Debug.Log("ResetDialog");
         Debug.Log(dnumber);
+    }
+    public void SetDialog(string[] dilogsArr)
+    {
+        dialogs = dilogsArr;
     }
    
 }

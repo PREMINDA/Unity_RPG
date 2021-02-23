@@ -6,6 +6,7 @@ public class DialogBoxActivator : MonoBehaviour
 {
     private DialogManager dm;
     private bool _isEnable = false;
+    public string[] dialogs;
     void Start()
     {
         dm = GameObject.Find("Canvas").GetComponent<DialogManager>();
@@ -17,6 +18,7 @@ public class DialogBoxActivator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && _isEnable == true)
         {
+            dm.SetDialog(dialogs);
             dm.DialogBoxActive(true);
             Player.instance.setcanwalk(0);
         }
