@@ -32,8 +32,9 @@ public class DialogManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && diallogbox.activeInHierarchy)
         {
+            
 
-            if (dialogs.Length - 1 > dnumber)
+            if (dialogs.Length > dnumber)
             {
                 dialog.text = dialogs[dnumber];
                 dnumber++;
@@ -66,6 +67,8 @@ public class DialogManager : MonoBehaviour
     public void SetDialog(string[] dilogsArr)
     {
         dialogs = dilogsArr;
+        dialog.text = dialogs[dnumber];
+        dnumber = 1;
     }
    
 }

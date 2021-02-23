@@ -21,12 +21,14 @@ public class DialogBoxActivator : MonoBehaviour
             dm.SetDialog(dialogs);
             dm.DialogBoxActive(true);
             Player.instance.setcanwalk(0);
+            _isEnable = false;
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && _isEnable == true)
+        if (Input.GetKeyDown(KeyCode.Escape) && _isEnable ==false)
         {
             dm.DialogBoxActive(false);
             Player.instance.setcanwalk(5f);
             dm.resetdialog();
+            _isEnable = true;
         }
     }
 
