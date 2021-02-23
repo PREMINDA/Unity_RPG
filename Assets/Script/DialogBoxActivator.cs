@@ -6,6 +6,7 @@ public class DialogBoxActivator : MonoBehaviour
 {
     private DialogManager dm;
     private bool _isEnable = false;
+    private bool _isEscapeEnable = false;
     public string[] dialogs;
     void Start()
     {
@@ -20,15 +21,19 @@ public class DialogBoxActivator : MonoBehaviour
         {
             dm.SetDialog(dialogs);
             dm.DialogBoxActive(true);
-            Player.instance.setcanwalk(0);
+            //Player.instance.setcanwalk(0);
+            Player.instance.StopPlayer(false);
             _isEnable = false;
+            _isEscapeEnable = true;
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && _isEnable ==false)
+        if (Input.GetKeyDown(KeyCode.Escape) && _isEscapeEnable == true)
         {
             dm.DialogBoxActive(false);
-            Player.instance.setcanwalk(5f);
+            //Player.instance.setcanwalk(5f);
+            Player.instance.StopPlayer(true);
             dm.resetdialog();
             _isEnable = true;
+            _isEscapeEnable = false;
         }
     }
 
@@ -46,8 +51,14 @@ public class DialogBoxActivator : MonoBehaviour
         if (collision.tag == "Player")
         {
             _isEnable = false;
+            _isEscapeEnable = false;
             dm.resetdialog();
 
+
         }
+    }
+    public void ReReadDialog()
+    {
+        _isEnable = true;
     }
 }

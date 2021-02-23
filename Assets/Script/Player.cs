@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Animator _playerAnimator;
     public static Player instance;
     public CameraContraller cam;
+    private bool canMove=true;
 
     public string areaTransestionName;
 
@@ -42,7 +43,10 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        Movement();
+        if(canMove == true)
+        {
+            Movement();
+        }
     }
 
     private void Movement()
@@ -78,5 +82,9 @@ public class Player : MonoBehaviour
     public void setcanwalk(float can)
     {
         speed = can;
+    }
+    public void StopPlayer(bool can)
+    {
+        canMove = can;
     }
 }

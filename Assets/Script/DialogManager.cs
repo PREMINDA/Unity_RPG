@@ -14,17 +14,16 @@ public class DialogManager : MonoBehaviour
     private GameObject namebox;
     [SerializeField]
     private int dnumber = 0;
-   
-
+    private DialogBoxActivator NPC;
+    
     public string[] dialogs;
    
     
     void Start()
-    {
-        
-       
+    { 
         Debug.Log(diallogbox.activeInHierarchy);
-
+        NPC = GameObject.Find("NPC").GetComponent<DialogBoxActivator>();
+        
     }
 
     // Update is called once per frame
@@ -32,13 +31,12 @@ public class DialogManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && diallogbox.activeInHierarchy)
         {
-            
+            dnumber++;
+            CheckIfName();
 
-            if (dialogs.Length > dnumber)
+            if (dialogs.Length > dnumber && dialogs[dnumber].StartsWith("n-") == false)
             {
                 dialog.text = dialogs[dnumber];
-                dnumber++;
-
                 Debug.Log(dnumber);
 
             }
@@ -46,7 +44,8 @@ public class DialogManager : MonoBehaviour
             {
                 diallogbox.SetActive(false);
                 resetdialog();
-                Player.instance.setcanwalk(5f);
+                Player.instance.StopPlayer(true);
+                NPC.ReReadDialog();
             }
             
            
@@ -67,8 +66,19 @@ public class DialogManager : MonoBehaviour
     public void SetDialog(string[] dilogsArr)
     {
         dialogs = dilogsArr;
+        CheckIfName();
         dialog.text = dialogs[dnumber];
-        dnumber = 1;
+        
+        
+    }
+    
+    public void CheckIfName()
+    {
+        if (dialogs.Length > dnumber && dialogs[dnumber].StartsWith("n-"))
+        {
+            name.text = dialogs[dnumber];
+            dnumber++;
+        }
     }
    
 }

@@ -29,7 +29,7 @@ public class AreaExit : MonoBehaviour
         if(collision.tag == "Player")
         {
             StartCoroutine(wait());
-            Player.instance.setcanwalk(0);
+            Player.instance.setcanwalk(0f);
             FadeUI.instance.FadeScreenblack();
            
         }
